@@ -45,5 +45,5 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
     title: "Default title",
     aboutText: 'Default About',
-    favNum: 2
+    favNum: 6
 }
