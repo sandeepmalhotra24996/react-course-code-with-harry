@@ -8,7 +8,6 @@ function TextForm(data) {
         <>
             <div className="container my-3">
                 <h3>{data.heading}</h3>
-                <form>
                     {/* <div className="form-group">
                     <label for="exampleFormControlInput1">Email address</label>
                     <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
@@ -18,7 +17,6 @@ function TextForm(data) {
                     </div>
                     <button className="btn btn-primary" onClick={()=>setText(text.toLocaleUpperCase())}>Convert to uppercase </button>
 
-                </form>
             </div>
         </>
     )
