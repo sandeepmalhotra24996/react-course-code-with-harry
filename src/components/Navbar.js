@@ -1,5 +1,6 @@
 // import React from 'react'
 import propTypes from 'prop-types'
+import Clock from './Clock'
 
 export default function Navbar(props) {
     return (
@@ -25,6 +26,7 @@ export default function Navbar(props) {
                                 <a className="nav-link disabled" href="#top" tabIndex="-1" aria-disabled="true">Disabled</a>
                             </li>
                         </ul>
+                        <Clock />
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit">Search</button>
@@ -47,3 +49,9 @@ Navbar.defaultProps = {
     aboutText: 'Default About',
     favNum: 6
 }
+
+/** dynamic append child in li - want to update time every second but not possible as navbar component is not being loaded when below code running to find ulNode */
+// let ulNode = document.getElementById('navbarSupportedContent').getElementsByTagName('ul')[0];
+// ulNode = ulNode.removeChild(ulNode.lastElementChild);
+// let liNode = document.createElement('li').appendChild(document.createTextNode('Hello'));
+// ulNode.appendChild(liNode)

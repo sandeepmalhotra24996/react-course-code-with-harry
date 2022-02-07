@@ -60,6 +60,99 @@ function TextForm(data) {
         // OR as we are splitting caps letter so just join all array elements with _
         setText(text.split(/(?=[A-Z])/).join('_'))
     }
+    let dummySortString = () => {
+        setText('3,7,24,1,4,512,16,238,102,9,01,034,0304,99,919,77');
+    };
+    const sortingSortFunc = () => {
+        let sort_asc_first_number = text.toLowerCase().split(',');
+        let sort_desc_first_number = text.toLowerCase().split(',');
+        let str_asc = text.toLowerCase().split(',').map(Number);
+        let str_desc = text.toLowerCase().split(',').map(Number);
+
+        sort_asc_first_number.sort();
+
+        sort_desc_first_number.sort((a, b) => { return a > b ? -1 : a < b ? 1 : 0 })
+
+        str_asc.sort(function (a, b) {
+            if (a > b) return 1;
+            if (a < b) return -1; //dont interchange position as to arrange in asc order and first element 'a' is already less then second element 'b'
+            return 0
+        });
+
+        str_desc.sort(function (a, b) { return b - a });
+
+        setText('original_string => ' + text + '\nsort_asc_first_number(type string) => ' + sort_asc_first_number + '\nsort_desc_first_number(type string) => ' + sort_desc_first_number + '\nstr_asc(type Number) => ' + str_asc + '\nstr_desc(type Number) => ' + str_desc)
+    }
+
+    function sortingForLoop() {
+        let str = text.split(',');
+        let for_each = str.forEach((element, index) => {
+            if ((element % 2) !== 0) {
+                console.log(element % 2)
+                str.push('222');
+            } else {
+                console.log(element)
+            }
+        })
+        console.log(str)
+        let str_new = text.split(',');
+        console.log(for_each)
+        console.log('before map : ')
+        let for_map = str_new.map((element, index) => {
+            if ((element % 2) !== 0) {
+                console.log(element % 2)
+                str_new.push('222');
+            } else {
+                console.log(element)
+            }
+            return str_new;
+        })
+        console.log(str_new)
+        console.log(for_map)
+        setText('Oops!! Please check your console, may be some error. ')
+    }
+
+    function dummyArrayObject() {
+        // const json_data = [{"first_name":"sandeep","last_name":"malhotra","age":25},{"first_name":"kunal","last_name":"sharma","age":19},{"first_name":"ankit","last_name":"kumar","age":23},{"first_name":"sunny","last_name":"singh","age":19}]
+        let obj_data = [{ first_name: 'sandeep', last_name: 'malhotra', age: 25 }, { first_name: 'kunal', last_name: 'sharma', age: 19 }, { first_name: 'ankit', last_name: 'kumar', age: 23 }, { first_name: 'sunny', last_name: 'singh', age: 19 }];
+        setText(JSON.stringify(obj_data));
+    }
+
+    function filterLoop() {
+        let arrObj = JSON.parse(text);
+        /** Get first_name value from above objects whose age is greater then 22*/
+        const output = arrObj.filter((element) => element.age > 22).map((finalElement) => finalElement.first_name + ' ' + finalElement.last_name);
+        let func_exec_str = "arrObj.filter((element) => element.age > 22).map((finalElement) => finalElement.first_name + ' ' + finalElement.last_name)";
+        setText('Given Arr of Objects : \n' + text + '\n\n Result : \n' + JSON.stringify(output) + '\n\n Function to filter : ' + func_exec_str );
+
+    }
+
+    let reduceLoop = () => {
+        let arrObj = JSON.parse(text);
+        /**get age-wise count in associative array */
+        let output = arrObj.reduce((accumulator, current) => {if(accumulator[current.age]){accumulator[current.age]++}else{accumulator[current.age]=1} return accumulator}, {});
+        let func_exec_str = `arrObjj.reduce((max,curr)=>{
+            if(max[curr.age]){
+                max[curr.age]++;
+            }else{
+                max[curr.age] = 1;
+            }
+            return max;
+        } , {})`;
+        setText('Given Arr of Objects : \n' + text + '\n\n Result : \n' + JSON.stringify(output) + '\n\n Function to reduce : ' + func_exec_str);
+    }
+
+    /**NOT WORKING : To check how to use document.querySelector */
+    // document.querySelector('#dummyArrayObject').onClick = () => {
+    //     console.log('hey')
+    //     let obj_data = [{first_name:'sandeep',last_name:'malhotra',age:25},{first_name:'kunal',last_name:'sharma',age:19},{first_name:'ankit',last_name:'kumar',age:23},{first_name:'sunny',last_name:'singh',age:19}];
+    //     setText(JSON.stringify(obj_data));
+    // }
+
+    // let doc_id = document.querySelector('#dummyArrayObject');
+    // doc_id.addEventListener('click', function() {
+    //     console.log('hey')
+    // })
 
     return (
         <>
@@ -69,10 +162,11 @@ function TextForm(data) {
                     <textarea className="form-control" id="myBox" value={text} onChange={handleChange} rows="8"></textarea>
                 </div>
                 <div className='col-sm-12'>
-                    <button className='btn btn-danger px-3' onClick={() => setText(prevText)}>Undo</button>
-                    <button className='btn btn-danger px-3' style={{ float: 'right' }} onClick={() => setText('Enter text here')}>Reset</button>
+                    <button className='btn btn-danger px-3 col-sm-1' onClick={() => setText(prevText)}>Undo</button>
+                    <span className='px-5 col-sm-2' >{text.split(' ').length} words and {text.length} characters</span>
+                    <span className='px-5 col-sm-2' > Estimated Time to Read : {(0.008 * text.split(' ').length).toFixed(4)} minutes</span>
+                    <button className='btn btn-danger px-3 col-sm-1' style={{ float: 'right' }} onClick={() => setText('Enter text here')}>Reset</button>
                 </div>
-                {/* <span>Convert to :- </span> */}
                 <div className='my-3 col-sm-12'>
                     <button className="btn btn-primary col-sm-4" onClick={handleClick}>Uppercase </button>
                     <button className='btn col-sm-4' onClick={convertFirstLetterWordUc}>First Letter of 1st Word UC</button>
@@ -87,6 +181,22 @@ function TextForm(data) {
                     <button className='btn btn-primary col-sm-4' onClick={convertToCamelCase}>CamelCase(_, space)</button>
                     <button className='btn col-sm-4' onClick={undoCamelCaseSpace}>Undo CamelCase(SPACE)</button>
                     <button className='btn btn-primary col-sm-4' onClick={undoCamelCaseUnderScore}>Undo CamelCase(UNDERS_)</button>
+                </div>
+                <div className='my-3'>
+                    <button className='btn col-sm-4' onClick={dummySortString}>Dummy string</button>
+                    <button className='btn col-sm-4 btn-primary' onClick={sortingSortFunc}>Sort by js sort()</button>
+                    <button className='btn col-sm-2' onClick={sortingForLoop}>Sort by forEach </button>
+                </div>
+                <div className='my-3'>
+                    <button className='btn btn-primary col-sm-2' onClick={dummyArrayObject}>
+                        Dummy Array Object
+                    </button>
+                    <button className='btn col-sm-2' onClick={filterLoop}>
+                        Filter obj get name of age less then 22
+                    </button>
+                    <button className='btn btn-primary col-sm-2' onClick={reduceLoop}>
+                        Reduce Loop
+                    </button>
                 </div>
             </div>
         </>
