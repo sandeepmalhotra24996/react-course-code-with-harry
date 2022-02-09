@@ -1,33 +1,50 @@
+import { useState } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm'
+import About from './components/About';
+import Alert from './components/Alert';
 
 function App() {
+  const [ mode, setMode] = useState('light');// wherher dark mode is enabled or not
+  const [alert, setAlert] = useState(null);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg:message,
+      type:type
+    })
+      setTimeout(()=>{
+        setAlert(null);
+      },2000)
+    }
+    const toggleMode = () => {
+      if(mode === 'light'){
+        setMode('dark')
+        document.body.style.backgroundColor = 'black';
+        showAlert('Dark mode has been enabled', 'success')
+        document.title = 'TextUtils - Dark Mode'
+        var intervalId1 = setInterval(()=>{
+          document.title = 'Its Great! Buy now';
+        },3000)
+        var intervalId2 = setInterval(()=>{
+          document.title = 'TextUtils is amazing!';
+      },5000)
+    }else{
+      setMode('light')
+      document.body.style.backgroundColor = 'white'
+      showAlert('Light mode has been enabled', 'success')
+      document.title = 'TextUtils - Light Mode';
+      clearInterval(intervalId1)
+      clearInterval(intervalId2)
+    }
+  }
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">TextUtils</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">About</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" href="#top" tabIndex="-1" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+      <Navbar title="TextUtils" favNum={24} aboutText='About App' mode={mode} toggleMode={toggleMode} />
+      {/* <Navbar /> */}
+      <Alert alert = {alert} />
+      <TextForm showAlert = {showAlert} heading='Enter text to analyze' mode = {mode}/>
+      {/* <About /> */}
     </>
   );
 }
