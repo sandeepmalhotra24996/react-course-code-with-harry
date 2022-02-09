@@ -18,6 +18,19 @@ function TextForm(data) {
         setText(text_in_state_to_uc)
     }
 
+    const handleCopy = () => {
+        const str = document.getElementById('myBox')
+        str.select();
+        navigator.clipboard.writeText(str.value)
+        data.showAlert('Copied to clipoard', 'success')
+    }
+
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+        data.showAlert('Extra spaces removed', 'success')
+    }
+
     function convertFirstLetterStringUc() {
         let splitStringArr = text.toLowerCase().split(' ')
         for (let i = 0; i < splitStringArr.length; i++) {
@@ -116,6 +129,7 @@ function TextForm(data) {
         // const json_data = [{"first_name":"sandeep","last_name":"malhotra","age":25},{"first_name":"kunal","last_name":"sharma","age":19},{"first_name":"ankit","last_name":"kumar","age":23},{"first_name":"sunny","last_name":"singh","age":19}]
         let obj_data = [{ first_name: 'sandeep', last_name: 'malhotra', age: 25 }, { first_name: 'kunal', last_name: 'sharma', age: 19 }, { first_name: 'ankit', last_name: 'kumar', age: 23 }, { first_name: 'sunny', last_name: 'singh', age: 19 }];
         setText(JSON.stringify(obj_data));
+        data.showAlert('Dummy array object is here', 'warning')
     }
 
     function filterLoop() {
@@ -124,7 +138,7 @@ function TextForm(data) {
         const output = arrObj.filter((element) => element.age > 22).map((finalElement) => finalElement.first_name + ' ' + finalElement.last_name);
         let func_exec_str = "arrObj.filter((element) => element.age > 22).map((finalElement) => finalElement.first_name + ' ' + finalElement.last_name)";
         setText('Given Arr of Objects : \n' + text + '\n\n Result : \n' + JSON.stringify(output) + '\n\n Function to filter : ' + func_exec_str );
-
+        data.showAlert('Filter loop result is here', 'success')
     }
 
     let reduceLoop = () => {
@@ -156,15 +170,17 @@ function TextForm(data) {
 
     return (
         <>
-            <div className="container my-3">
+            <div className="container my-3" style ={{color:data.mode === 'dark' ? 'white' : 'black'}}>
                 <h3>{data.heading}</h3>
                 <div className="form-group mb-3">
-                    <textarea className="form-control" id="myBox" value={text} onChange={handleChange} rows="8"></textarea>
+                    <textarea style={{color : data.mode === 'dark' ? 'white' : 'black', backgroundColor: data.mode === 'dark' ? 'black' : 'white'}} className="form-control" id="myBox" value={text} onChange={handleChange} rows="8"></textarea>
                 </div>
                 <div className='col-sm-12'>
                     <button className='btn btn-danger px-3 col-sm-1' onClick={() => setText(prevText)}>Undo</button>
-                    <span className='px-5 col-sm-2' >{text.split(' ').length} words and {text.length} characters</span>
-                    <span className='px-5 col-sm-2' > Estimated Time to Read : {(0.008 * text.split(' ').length).toFixed(4)} minutes</span>
+                    <span className='px-5 col-sm-1' >{text.split(' ').length} words and {text.length} characters</span>
+                    <span className='px-5 col-sm-1' > Estimated Time to Read : {(0.008 * text.split(' ').length).toFixed(4)} minutes</span>
+                    <button className='btn col-sm-2 btn-success' onClick={handleExtraSpaces}>Remove space </button>
+                    <button className='btn col-sm-1' onClick={handleCopy}>Copy Text </button>
                     <button className='btn btn-danger px-3 col-sm-1' style={{ float: 'right' }} onClick={() => setText('Enter text here')}>Reset</button>
                 </div>
                 <div className='my-3 col-sm-12'>
