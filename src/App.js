@@ -13,19 +13,29 @@ function App() {
       msg:message,
       type:type
     })
-    setTimeout(()=>{
-      setAlert(null);
-    },2000)
-  }
-  const toggleMode = () => {
-    if(mode === 'light'){
-      setMode('dark')
-      document.body.style.backgroundColor = 'black';
-      showAlert('Dark mode has been enabled', 'success')
+      setTimeout(()=>{
+        setAlert(null);
+      },2000)
+    }
+    const toggleMode = () => {
+      if(mode === 'light'){
+        setMode('dark')
+        document.body.style.backgroundColor = 'black';
+        showAlert('Dark mode has been enabled', 'success')
+        document.title = 'TextUtils - Dark Mode'
+        var intervalId1 = setInterval(()=>{
+          document.title = 'Its Great! Buy now';
+        },3000)
+        var intervalId2 = setInterval(()=>{
+          document.title = 'TextUtils is amazing!';
+      },5000)
     }else{
       setMode('light')
       document.body.style.backgroundColor = 'white'
       showAlert('Light mode has been enabled', 'success')
+      document.title = 'TextUtils - Light Mode';
+      clearInterval(intervalId1)
+      clearInterval(intervalId2)
     }
   }
   return (
