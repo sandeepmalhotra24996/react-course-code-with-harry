@@ -27,9 +27,9 @@ export default function Navbar(props) {
                                 <a className="nav-link disabled" href="#top" tabIndex="-1" aria-disabled="true">Disabled</a>
                             </li>
                         </ul>
-                        <p className="mx-auto">
+                        <span className="mx-auto">
                             <Clock />
-                        </p>
+                        </span>
                         {/* <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit">Search</button>

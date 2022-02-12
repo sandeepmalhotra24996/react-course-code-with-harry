@@ -32,7 +32,8 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div>Javascript Time <span id = 'myDate'></span> and time is : <span id='myTime'></span></div>
+    <!-- <div className="mx-auto">Tomorrow is funday : <span id = 'myDate'></span> and time is : <span id='myTime'></span></div> -->
+    <div className="mx-auto">Tomorrow is funday : <span id = 'myDate'></span> ( <span id='myDay'></span> )</div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -49,10 +50,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script>
     setInterval(function(){
-      let b = new Date();
+      let b = new Date(Date.now() + (3600 * 1000 * 24));
+      let w_day = (b.getDay() == 6 || b.getDay() == 0) ? 'Weekend' : 'Weekdays';
       // let myTimeFormat = b.getHours() + ':' + b.getMinutes() + ':' + b.getSeconds();
       document.getElementById('myDate').innerText = b.toLocaleDateString();
-      document.getElementById('myTime').innerHTML = b.toLocaleTimeString();
+      // document.getElementById('myTime').innerHTML = b.toLocaleTimeString();
+      document.getElementById('myDay').innerHTML = w_day;
     },1000)
   </script>
 </html>
