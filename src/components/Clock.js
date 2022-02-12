@@ -32,7 +32,7 @@ class Clock extends React.Component {
             day:"numeric"
         }
         return (
-                <p>React Time : {this.state.date.toLocaleDateString('en', options)} - {this.state.date.toLocaleTimeString()}</p>
+                <p>{this.state.date.toLocaleDateString('en', options)} - {this.state.date.toLocaleTimeString()}</p>
         );
     }
 }
