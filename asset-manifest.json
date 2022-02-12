@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-course-code-with-harry/static/css/main.abd64e84.css",
+    "main.js": "/react-course-code-with-harry/static/js/main.d6efc596.js",
+    "static/js/787.719ec76d.chunk.js": "/react-course-code-with-harry/static/js/787.719ec76d.chunk.js",
+    "index.html": "/react-course-code-with-harry/index.html",
+    "main.abd64e84.css.map": "/react-course-code-with-harry/static/css/main.abd64e84.css.map",
+    "main.d6efc596.js.map": "/react-course-code-with-harry/static/js/main.d6efc596.js.map",
+    "787.719ec76d.chunk.js.map": "/react-course-code-with-harry/static/js/787.719ec76d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abd64e84.css",
+    "static/js/main.d6efc596.js"
+  ]
+}
