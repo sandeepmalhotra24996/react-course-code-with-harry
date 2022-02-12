@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-course-code-with-harry/static/css/main.abd64e84.css",
-    "main.js": "/react-course-code-with-harry/static/js/main.3ed1c6e7.js",
-    "static/js/787.719ec76d.chunk.js": "/react-course-code-with-harry/static/js/787.719ec76d.chunk.js",
-    "index.html": "/react-course-code-with-harry/index.html",
-    "main.abd64e84.css.map": "/react-course-code-with-harry/static/css/main.abd64e84.css.map",
-    "main.3ed1c6e7.js.map": "/react-course-code-with-harry/static/js/main.3ed1c6e7.js.map",
-    "787.719ec76d.chunk.js.map": "/react-course-code-with-harry/static/js/787.719ec76d.chunk.js.map"
+    "main.css": "/text-utils/static/css/main.abd64e84.css",
+    "main.js": "/text-utils/static/js/main.f1c4c19e.js",
+    "static/js/787.719ec76d.chunk.js": "/text-utils/static/js/787.719ec76d.chunk.js",
+    "index.html": "/text-utils/index.html",
+    "main.abd64e84.css.map": "/text-utils/static/css/main.abd64e84.css.map",
+    "main.f1c4c19e.js.map": "/text-utils/static/js/main.f1c4c19e.js.map",
+    "787.719ec76d.chunk.js.map": "/text-utils/static/js/787.719ec76d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.abd64e84.css",
-    "static/js/main.3ed1c6e7.js"
+    "static/js/main.f1c4c19e.js"
   ]
 }
